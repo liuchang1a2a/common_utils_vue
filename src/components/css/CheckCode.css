@@ -1,0 +1,16 @@
+[v-cloak] {
+    display: none;
+}
+.code-box{
+    height: 80px;
+}
+.code_box .el-input{
+    vertical-align: middle;
+    width:50%;
+    margin-right: 5px;
+}
+.code_box img{
+    vertical-align: middle; 
+    width:100px;
+    height:50px;
+}
