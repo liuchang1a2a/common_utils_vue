@@ -20,3 +20,5 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 # common_utils_vue
+
+新建vue-tmp文件夹加载项目
