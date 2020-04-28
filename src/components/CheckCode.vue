@@ -40,7 +40,7 @@ export default {
             this.jsonStr = {
                 // "num": 4,  //字符个数
                 // "txt": 's,x,f,c,g', // 可选字符内容
-                "cn": true,  // 是否为中文字符
+                // "cn": false,  // 是否为中文字符
                 // "repeat": true, //是否可重复
                 // "ext": "jpg", //生成文件后缀
                 "width": this.width,   //图片宽度
@@ -72,7 +72,6 @@ export default {
            
 
             var postdata = this.$qs.stringify({
-                // "code":encodeURI(this.code)
                 "code": this.code
             });
 
