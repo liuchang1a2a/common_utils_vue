@@ -29,11 +29,12 @@ export default {
             this.refresh();
         },
         refresh:function(){
+            var base = this.$axios.defaults.baseURL;
             var jsonstr = JSON.stringify(this.jsonStr);
             if(jsonstr=="{}"){
-                this.url = "http://127.0.0.1:8080/common_utils/img/code?v="+new Date().getMilliseconds();
+                this.url = base+"img/code?v="+new Date().getMilliseconds();
             }else{
-                this.url = "http://127.0.0.1:8080/common_utils/img/code?jsonStr="+encodeURIComponent(jsonstr)+"&v="+new Date().getMilliseconds();
+                this.url = base+"img/code?jsonStr="+encodeURIComponent(jsonstr)+"&v="+new Date().getMilliseconds();
             }
         },
         setCode:function(){

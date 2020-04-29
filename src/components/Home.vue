@@ -4,6 +4,7 @@
         <p>{{msg}}</p>
         
         <router-link to="/home/checkcode">CheckCode</router-link>
+        <router-link to="/home/markimg">MarkImg</router-link>
         <router-view></router-view>
     </div>
 </template>
