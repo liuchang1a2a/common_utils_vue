@@ -70,20 +70,6 @@ export default {
                 url: this.url,
                 path:'/file/test'
             });
-            // 同步
-            // var axios = async function(){
-            //    return await this.$axios.post(this.downUrl, postdata).res;
-            // };
-            // var res = axios;
-            // var data =res.data;
-            // console.log(data);
-            // if(data.code=='0'){
-            //     var info = data.info;
-            //     path =info.path;
-            // }else{
-            //     this.showError(data.msg);
-            // }
-            // return path;
 
             return  new Promise((resolve,reject)=>{
                 that.$axios.post(this.downUrl, postdata).then(res=>{
@@ -139,7 +125,8 @@ export default {
                 "fsize":30,
                     // "fstyle":'',
                 // "x":250,
-                // "y":520
+                // "y":520,
+                "degree": 30
             };
             var url = this.$axios.defaults.baseURL+"img/marktxt?path="+encodeURIComponent(path)+"&ext="+ext+"&json="+encodeURIComponent(JSON.stringify(json));
             window.open(url,"_blank");  
