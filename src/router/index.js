@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import CheckCode from '@/components/CheckCode'
 import MarkImg from '@/components/MarkImg'
 import User from '@/components/User'
+import QrCode from '@/components/QrCode'
 
 Vue.use(Router)
 
@@ -25,6 +26,9 @@ export default new Router({
         {
           path:'markimg',
           component: MarkImg
+        },{
+          path:'qrcode',
+          component: QrCode
         },
         {
           path: '',

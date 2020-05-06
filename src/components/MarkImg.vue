@@ -40,9 +40,6 @@
             <el-input v-if="activeMenu=='2-2'" v-model="icurl" placeholder="请输入图标地址 http://" class="mark_txt"></el-input>
             <el-button size="small" type="primary" @click="preview">预览</el-button>
         </div>
-        <!--
-        添加图片 <br/>
-        -->
     </div>
 </template>
 <script>

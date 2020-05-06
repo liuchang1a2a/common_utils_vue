@@ -1,0 +1,21 @@
+[v-cloak] {
+    display: none;
+}
+
+.qrbox{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.qr_txt{
+    width:200px;
+    line-height:70px;
+    vertical-align:middle;
+}
+.qr_uploader{
+    display:inline-block;
+    vertical-align:middle;
+    margin-top:22px;
+    width:108px;
+}

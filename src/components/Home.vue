@@ -5,6 +5,7 @@
         
         <router-link to="/home/checkcode">CheckCode</router-link>
         <router-link to="/home/markimg">MarkImg</router-link>
+        <router-link to="/home/qrcode">QrCode</router-link>
         <router-view></router-view>
     </div>
 </template>
