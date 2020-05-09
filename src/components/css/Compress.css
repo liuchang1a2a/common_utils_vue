@@ -1,0 +1,20 @@
+[v-cloak] {
+    display: none;
+}
+.filebox{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.uploader{
+    display:inline-block;
+    vertical-align:middle;
+    margin-top:2px;
+
+}
+
+.btn{
+
+    margin-left: 20px;
+}

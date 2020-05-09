@@ -5,6 +5,7 @@ import CheckCode from '@/components/CheckCode'
 import MarkImg from '@/components/MarkImg'
 import User from '@/components/User'
 import QrCode from '@/components/QrCode'
+import Compress from '@/components/Compress'
 
 Vue.use(Router)
 
@@ -29,6 +30,9 @@ export default new Router({
         },{
           path:'qrcode',
           component: QrCode
+        },{
+          path:'compress',
+          component: Compress
         },
         {
           path: '',
