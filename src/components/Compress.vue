@@ -179,7 +179,7 @@ export default {
                 this.showError("请上传文件");
                 return false;
             }
-            var name = "test.zip";
+            var name = "test.rar";  //可为zip, rar
             var json = {
                 "paths": this.files
             };
