@@ -20,14 +20,12 @@
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             -->
         </el-upload>
-
-        <!-- 按钮触发input按钮  后包装为组件-->
-        <input v-if="activeMenu=='2'" ref="file" type='file' name="file" webkitdirectory @change.stop="changesData"/>
-
-        <span>{{dir}}</span>
-        <!-- 添加删除功能-->
+        <div style="display:inline-block;">
+            <el-button v-if="activeMenu=='2'" size="small" type="primary" class="btn" @click="upload">选择文件夹</el-button>
+            <input class="input_dir" ref="dir" type='file' name="file" webkitdirectory @change.stop="changesData"/>
+            <div>{{dir}}</div>
+        </div>
         <el-button size="small" type="primary" class="btn" @click="compress">压缩</el-button>
-
     </div>
 </template>
 <script>
@@ -55,6 +53,9 @@ export default {
             this.delUrl = this.$axios.defaults.baseURL+this.delUrl;
             this.zipUrl = this.$axios.defaults.baseURL+this.zipUrl;
             this.upDirUrl = this.$axios.defaults.baseURL+this.upDirUrl;
+        },
+        upload:function(){
+            this.$refs.dir.dispatchEvent(new MouseEvent('click'));
         },
         changesData:function(e) {
             var that = this;

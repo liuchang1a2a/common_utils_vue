@@ -36,3 +36,7 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+.input_dir{
+    display: none;
+}
