@@ -6,6 +6,7 @@ import MarkImg from '@/components/MarkImg'
 import User from '@/components/User'
 import QrCode from '@/components/QrCode'
 import Compress from '@/components/Compress'
+import Upload from '@/components/Upload'
 
 Vue.use(Router)
 
@@ -33,6 +34,9 @@ export default new Router({
         },{
           path:'compress',
           component: Compress
+        },{
+          path:'upload',
+          component: Upload
         },
         {
           path: '',

@@ -1,0 +1,23 @@
+[v-cloak] {
+    display: none;
+}
+
+.upbox{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.up_input{
+    display:inline-block;
+    vertical-align: top;
+    width: 400px;
+    margin-top:20px;
+}
+
+.uploader{
+    display:inline-block;
+    vertical-align:top;
+    width: 100px;
+    margin-top:20px;
+}
