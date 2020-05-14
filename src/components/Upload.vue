@@ -1,8 +1,9 @@
 <template>
     <div  class="upbox" v-cloak>
         <el-menu :default-active="activeMenu" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-             <el-menu-item index="1">上传至服务器</el-menu-item>
-             <el-menu-item index="2">断点续传</el-menu-item>
+             <el-menu-item index="1">上传至服务器</el-menu-item>    <!--  上传文件到目标服务器接口  -->
+             <el-menu-item index="2">断点续传</el-menu-item>        <!-- 服务器端文件的多线程断点续传 -->
+             <el-menu-item index="3">分片上传</el-menu-item> 
         </el-menu>
         <el-input v-model="url" v-if="activeMenu=='1'" placeholder="服务器地址" class="up_input"></el-input>
         <el-upload v-if="activeMenu=='1'"
@@ -16,6 +17,9 @@
             <el-button size="small" type="primary">选择文件</el-button>
             <div slot="tip" class="el-upload__tip">{{filename}}</div>
         </el-upload>
+
+         <el-input v-model="fileUrl" v-if="activeMenu=='2'" placeholder="下载URL" class="up_input"></el-input>
+         <el-button size="small" v-if="activeMenu=='2'" type="primary" class="down_btn" @click="download">下载</el-button>
     </div>
 </template>
 <script>
@@ -27,7 +31,9 @@ export default {
             upUrl:'file/httpUpload',
             data:{},
             url:'',
-            filename:''
+            filename:'',
+            downUrl:'file/download',
+            fileUrl:''
         }
     },
     mounted:function(){
@@ -36,13 +42,14 @@ export default {
     methods:{
          initData:function(){
              this.upUrl = this.$axios.defaults.baseURL+this.upUrl;
-
+             this.downUrl = this.$axios.defaults.baseURL+this.downUrl;
          },
          handleSelect:function(key, keyPath) {
             this.activeMenu = key;
             this.filename ='';
             this.url='';
             this.data={};
+            this.fileUrl='';
          },
          beforeUpload:function(file){
             if(this.url.trim()==''){
@@ -80,6 +87,14 @@ export default {
         },
         handleError:function(err,file,fileList){
             this.showError(err);
+        },
+        download:function(){
+            if(this.fileUrl.trim()==''){
+                this.showError("下载URL不能为空");
+                return false;
+            }
+            var url = this.downUrl+"?url="+encodeURIComponent(this.fileUrl);
+            window.open(url,"_blank"); 
         },
         showError: function(msg){
             this.$message({
