@@ -20,9 +20,16 @@
 
          <el-input v-model="fileUrl" v-if="activeMenu=='2'" placeholder="下载URL" class="up_input"></el-input>
          <el-button size="small" v-if="activeMenu=='2'" type="primary" class="down_btn" @click="download">下载</el-button>
+   
+
+        <el-button id="chunkbutton" type="primary" v-if="activeMenu=='3'" :disabled="!btn_enable">
+                {{btn_msg}}
+        </el-button>
     </div>
 </template>
 <script>
+import plupload from 'plupload'
+
 export default {
     name:'Upload',
     data(){
@@ -33,7 +40,12 @@ export default {
             url:'',
             filename:'',
             downUrl:'file/download',
-            fileUrl:''
+            fileUrl:'',
+            chunkUrl:'file/chunkUpload',
+            up:{},
+            chunk_size: 2,
+            btn_msg:'请选择文件',
+            btn_enable: true
         }
     },
     mounted:function(){
@@ -43,13 +55,81 @@ export default {
          initData:function(){
              this.upUrl = this.$axios.defaults.baseURL+this.upUrl;
              this.downUrl = this.$axios.defaults.baseURL+this.downUrl;
+             this.chunkUrl = this.$axios.defaults.baseURL+this.chunkUrl;
+            //  this.initPlupload();
          },
+         initPlupload:function(){
+             var that = this
+             var uploader = new plupload.Uploader({
+                browse_button: 'chunkbutton',
+                url: that.chunkUrl,
+                chunk_size: that.chunk_size+'MB',
+                // headers: that.headers,
+                multipart: true, // 为true时将以multipart/form-data
+                max_retries: 3, // 当发生plupload.HTTP_ERROR错误时的重试次数，为0时表示不重试
+                multi_selection: false, // 是否可以在文件浏览对话框中选择多个文件
+                filters: {
+                    mime_types: [
+                        // { extensions: that.acceptFiles.replace(/\./g, '') }
+                    ],
+                    prevent_duplicates: true, // 不允许选取重复文件
+                    max_file_size: '1024mb' // 最大只能上传400kb的文件
+                },
+                
+             });
+
+             uploader.bind("BeforeUpload",function(up, file){
+                 up.setOption('multipart_params', {
+                    'name': file.name,
+                    'size': file.size,
+                    "path": "/file/test",
+                    "chunk_size": that.chunk_size
+                 });
+             });
+             uploader.bind("FilesAdded",function(up,files){
+                 up.start();
+             });
+             uploader.bind('UploadProgress',function(uploader,file){
+                 that.btn_msg = "上传中...";
+                 that.btn_enable = false;
+             });
+             uploader.bind("FileUploaded",function(up, file, info){
+                 if(info.status==200){
+                      var data = JSON.parse(info.response);
+                      if(data.code=='0'){
+                        that.btn_msg = "请选择文件";
+                        that.btn_enable = true;
+                        that.$message({
+                            showClose: true,
+                            message: '上传成功!',
+                            type: 'success'
+                        });
+                      }else{
+                          that.showError(data.msg);
+                      }
+                 }else{
+                     that.showError("服务器无响应");
+                 }
+             });
+             uploader.bind("Error",function(up, err){
+                 that.showError(err.message);
+             });
+             uploader.init();
+             this.up = uploader;
+         },
+
          handleSelect:function(key, keyPath) {
+            var that = this;
             this.activeMenu = key;
             this.filename ='';
             this.url='';
             this.data={};
             this.fileUrl='';
+            if(this.activeMenu=='3'){
+                this.$nextTick(()=>{
+                    that.initPlupload();
+                });
+            }
          },
          beforeUpload:function(file){
             if(this.url.trim()==''){
