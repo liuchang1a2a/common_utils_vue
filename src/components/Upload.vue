@@ -21,10 +21,14 @@
          <el-input v-model="fileUrl" v-if="activeMenu=='2'" placeholder="下载URL" class="up_input"></el-input>
          <el-button size="small" v-if="activeMenu=='2'" type="primary" class="down_btn" @click="download">下载</el-button>
    
-
-        <el-button id="chunkbutton" type="primary" v-if="activeMenu=='3'" :disabled="!btn_enable">
-                {{btn_msg}}
-        </el-button>
+        <template v-if="activeMenu=='3'">
+            <el-button id="chunkbutton" type="primary" :disabled="!btn_enable">
+                    {{btn_msg}}
+            </el-button>
+            <el-button type="primary" :icon="pause?'el-icon-video-play':'el-icon-video-pause'" :disabled="btn_enable" @click="onPause">
+                {{pause?'继续':'暂停'}}
+            </el-button>
+        </template>
     </div>
 </template>
 <script>
@@ -45,7 +49,8 @@ export default {
             up:{},
             chunk_size: 2,
             btn_msg:'请选择文件',
-            btn_enable: true
+            btn_enable: true,
+            pause: false
         }
     },
     mounted:function(){
@@ -56,7 +61,6 @@ export default {
              this.upUrl = this.$axios.defaults.baseURL+this.upUrl;
              this.downUrl = this.$axios.defaults.baseURL+this.downUrl;
              this.chunkUrl = this.$axios.defaults.baseURL+this.chunkUrl;
-            //  this.initPlupload();
          },
          initPlupload:function(){
              var that = this
@@ -92,6 +96,8 @@ export default {
              uploader.bind('UploadProgress',function(uploader,file){
                  that.btn_msg = "上传中...";
                  that.btn_enable = false;
+                 // 可加进度条
+                 console.log(file.percent);
              });
              uploader.bind("FileUploaded",function(up, file, info){
                  if(info.status==200){
@@ -117,7 +123,15 @@ export default {
              uploader.init();
              this.up = uploader;
          },
-
+         onPause:function(){
+             if(this.pause){
+                 this.up.start();
+                 this.pause = false;
+             }else{
+                 this.up.stop();
+                 this.pause = true;
+             }
+         },
          handleSelect:function(key, keyPath) {
             var that = this;
             this.activeMenu = key;
