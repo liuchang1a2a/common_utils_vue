@@ -8,6 +8,7 @@
         <router-link to="/home/qrcode"  title="二维码">QrCode</router-link>
         <router-link to="/home/compress" title="压缩文件">Compress</router-link>
         <router-link to="/home/upload" title="上传文件">Upload</router-link>
+        <router-link to="/home/video"   title="视频">Video</router-link>
         <router-view></router-view>
     </div>
 </template>

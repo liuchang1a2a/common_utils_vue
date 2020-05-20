@@ -1,0 +1,24 @@
+[v-cloak] {
+    display: none;
+}
+.vbox{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.player{
+    margin-top:40px;
+}
+
+.url_input{
+    display:inline-block;
+    vertical-align: top;
+    width: 400px;
+    margin-top:20px;
+}
+
+.url_btn{
+    margin-top:20px;
+    vertical-align: middle;
+}

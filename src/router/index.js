@@ -7,6 +7,7 @@ import User from '@/components/User'
 import QrCode from '@/components/QrCode'
 import Compress from '@/components/Compress'
 import Upload from '@/components/Upload'
+import Video from '@/components/Video'
 
 Vue.use(Router)
 
@@ -37,6 +38,9 @@ export default new Router({
         },{
           path:'upload',
           component: Upload
+        },{
+          path:'video',
+          component: Video
         },
         {
           path: '',
