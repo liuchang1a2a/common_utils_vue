@@ -34,8 +34,6 @@ export default {
     methods:{
         initData:function(){
             this.initLocal();
-            // require('../../assets/logo.png');
-            // this.poster = require('../../assets/error_video.bmp');
         },
         initLocal:function(){      // blob 视频加密
             var that = this;
@@ -46,9 +44,16 @@ export default {
             xhr.responseType = 'blob';
             xhr.onload = function(e) {
                 if (xhr.status === 200) {
-                    var blob = this.response;
-                    // 获取blob对象地址，并把值赋给容器
-                    that.Src = URL.createObjectURL(blob);
+                    console.log(xhr);
+                    var blob = xhr.response; // 获取blob对象地址，并把值赋给容器
+                    if(blob.type=="video/mpeg4"){
+                        that.Src = URL.createObjectURL(blob);    
+                    }else{
+                        that.poster = require("../assets/error_video.png");
+                    }
+                   
+                }else{
+                    that.poster = require("../assets/error_video.png");
                 }
             };
             xhr.send();
@@ -58,6 +63,7 @@ export default {
             this.activeMenu = key;
             this.url='';
             this.Src='';
+            this.poster = require("../assets/logo.png");
             if(this.activeMenu=='1'){
                 this.initLocal();
             }
@@ -76,13 +82,19 @@ export default {
                 if (xhr.status === 200) {
                     var blob = this.response;
                     // 获取blob对象地址，并把值赋给容器
-                    that.Src = URL.createObjectURL(blob);
+                    if(blob.type=="video/mpeg4"){
+                        that.Src = URL.createObjectURL(blob);    
+                    }else{
+                        that.poster = require("../assets/error_video.png");
+                    }
+                }else{
+                    that.poster = require("../assets/error_video.png");
                 }
             };
             xhr.send();
 
         },
-        // mp2t
+        
         showError: function(msg){
             this.$message({
                 showClose: true,
