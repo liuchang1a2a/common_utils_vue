@@ -9,7 +9,6 @@
             <el-input v-model="url" v-if="activeMenu=='2'" placeholder="视频链接地址 http://..." class="url_input"></el-input>
             <el-button size="small" v-if="activeMenu=='2'" type="primary" class="url_btn" @click="play">确定</el-button>
         </template>
-
         <video controls="controls" class="player" :poster="poster" preload="auto"  height="300" width="400" :src="Src"  type="video/mp4">
                 您的浏览器不支持html5!
         </video>
@@ -26,7 +25,7 @@ export default {
             localUrl:'video/getLocal',
             webUrl: 'video/getWeb',
             url:'',
-            poster:'../assets/error_video.bmp'
+            poster: require("../assets/logo.png"),
         }
     },
     mounted:function(){
@@ -35,8 +34,8 @@ export default {
     methods:{
         initData:function(){
             this.initLocal();
-            
-
+            // require('../../assets/logo.png');
+            // this.poster = require('../../assets/error_video.bmp');
         },
         initLocal:function(){      // blob 视频加密
             var that = this;
