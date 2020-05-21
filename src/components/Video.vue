@@ -2,8 +2,7 @@
     <div  class="vbox" v-cloak>
         <el-menu :default-active="activeMenu" class="el-menu-demo" mode="horizontal" @select="handleSelect">
              <el-menu-item index="1">本地视频</el-menu-item>  
-             <el-menu-item index="2">网络视频</el-menu-item>
-             <el-menu-item index="3">视频水印</el-menu-item>   
+             <el-menu-item index="2">网络视频</el-menu-item> 
         </el-menu>
         <template v-if="activeMenu=='2'">
             <el-input v-model="url" v-if="activeMenu=='2'" placeholder="视频链接地址 http://..." class="url_input"></el-input>
@@ -12,7 +11,7 @@
         <video controls="controls" class="player" :poster="poster" preload="auto"  height="300" width="400" :src="Src"  type="video/mp4">
                 您的浏览器不支持html5!
         </video>
-        
+                
     </div>
 </template>
 <script>
@@ -44,7 +43,6 @@ export default {
             xhr.responseType = 'blob';
             xhr.onload = function(e) {
                 if (xhr.status === 200) {
-                    console.log(xhr);
                     var blob = xhr.response; // 获取blob对象地址，并把值赋给容器
                     if(blob.type=="video/mpeg4"){
                         that.Src = URL.createObjectURL(blob);    
