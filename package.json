@@ -14,6 +14,8 @@
     "element-ui": "^2.13.1",
     "plupload": "^2.3.6",
     "qs": "^6.9.3",
+    "video.js": "^7.7.6",
+    "videojs-contrib-hls": "^5.15.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

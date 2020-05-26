@@ -7,6 +7,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import qs from 'qs'
+import Video from 'video.js'
+import 'videojs-contrib-hls'
+import 'video.js/dist/video-js.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -16,6 +19,7 @@ axios.defaults.timeout = 5000;
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
 Vue.prototype.$qs=qs;
+Vue.prototype.$video = Video;
 
 /* eslint-disable no-new */
 new Vue({

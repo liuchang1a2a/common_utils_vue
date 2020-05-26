@@ -8,6 +8,7 @@ import QrCode from '@/components/QrCode'
 import Compress from '@/components/Compress'
 import Upload from '@/components/Upload'
 import Video from '@/components/Video'
+import VideoJS from '@/components/VideoJS'
 
 Vue.use(Router)
 
@@ -41,6 +42,9 @@ export default new Router({
         },{
           path:'video',
           component: Video
+        },{
+          path:'videojs',
+          component: VideoJS
         },
         {
           path: '',
