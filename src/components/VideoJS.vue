@@ -55,14 +55,14 @@ export default {
                 width:'400px',
                 height:'300px',
                 flash: { hls: { withCredentials: false }},
-                html5: { hls: { withCredentials: true }},
+                html5: { hls: { withCredentials: false }},
             });
             console.log(this.src);
             // 跨域访问 m3u8问题
-            this.src="http://127.0.0.1:8088/static/test.m3u8";
+            // this.src="http://127.0.0.1:8088/static/test.m3u8";
             
-            this.player.src({type:"application/x-mpegURL",src:this.src,withCredentials: true}); 
-            //src="http://localhost/video/c/1928.m3u8" type="application/x-mpegURL"
+            this.player.src({type:"application/x-mpegURL",src:this.src,withCredentials: false}); 
+            
         },
     }
 }
