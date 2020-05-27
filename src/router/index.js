@@ -14,7 +14,7 @@ Vue.use(Router)
 
 export default new Router({
   base:'/common_utils/dist/',
-  mode:'history', // history  hash
+  mode:'history', // hash: 路径带#  history: 部署到服务器, 需设置https://router.vuejs.org/zh/guide/essentials/history-mode.html    
   routes: [
     {
       path: '/',

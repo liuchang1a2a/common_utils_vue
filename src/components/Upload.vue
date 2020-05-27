@@ -45,7 +45,7 @@ export default {
             filename:'',
             downUrl:'file/download',
             fileUrl:'',
-            chunkUrl:'file/chunkUpload',
+            chunkUrl:'file/chunkUpload',  //chunkUploadEx 文件流
             up:{},
             chunk_size: 2,
             btn_msg:'请选择文件',
