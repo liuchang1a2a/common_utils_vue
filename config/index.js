@@ -36,6 +36,7 @@ module.exports = {
     cssSourceMap: true
   },
 
+  // 部署到tomcat:  https://blog.csdn.net/yangshuaionline/article/details/91429550
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
@@ -43,7 +44,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/common_utils/dist/',
+    assetsPublicPath: '/common_utils/dist/',    
 
     /**
      * Source Maps
