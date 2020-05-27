@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-   <!--
+   
+   <!--   test一下
    <router-link to="/home">Home</router-link>
    <router-link to="/user/111">User</router-link>
    -->

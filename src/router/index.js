@@ -13,7 +13,8 @@ import VideoJS from '@/components/VideoJS'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode:'hash', // history
+  // base:'/common_utils/dist/',  // https://www.cnblogs.com/lemoncool/p/11271925.html
   routes: [
     {
       path: '/',

@@ -35,7 +35,7 @@ export default {
             this.$axios.post(this.$axios.defaults.baseURL+"video/m3u8", postdata).then(res=>{
                 var data = res.data;
                 if(data.code=='0'){
-                    that.src = data.m3u8;
+                    that.src = data.m3u8.replace(/\\/g,'/');
                     that.initVideo();
                 }else{
                     that.showError(data.msg);
@@ -57,8 +57,10 @@ export default {
                 flash: { hls: { withCredentials: false }},
                 html5: { hls: { withCredentials: false }},
             });
-            console.log(this.src);
+            
             // 跨域访问 m3u8问题
+            this.src = this.$axios.defaults.baseURL+this.src;
+            // 本地测试
             // this.src="http://127.0.0.1:8088/static/test.m3u8";
             
             this.player.src({type:"application/x-mpegURL",src:this.src,withCredentials: false}); 
