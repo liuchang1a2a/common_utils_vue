@@ -1,0 +1,30 @@
+.thumb{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.uploader{
+    display:inline-block;
+    vertical-align: middle;
+    margin-top:24px;
+    width:108px;
+}
+
+.submit{
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.scale{
+    width:200px;
+    vertical-align:middle;
+}
+
+.img_box{
+    margin-top: 20px;
+}
+
+img{
+    cursor: pointer;
+}

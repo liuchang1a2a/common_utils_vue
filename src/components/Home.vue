@@ -4,6 +4,7 @@
         <p>{{msg}}</p>
         <router-link to="/home/checkcode" title="验证码">CheckCode</router-link>
         <router-link to="/home/markimg" title="水印">MarkImg</router-link>
+         <router-link to="/home/thumbnail"   title="图片处理">Thumbnail</router-link>
         <router-link to="/home/qrcode"  title="二维码">QrCode</router-link>
         <router-link to="/home/compress" title="压缩文件">Compress</router-link>
         <router-link to="/home/upload" title="上传文件">Upload</router-link>

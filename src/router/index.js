@@ -9,6 +9,7 @@ import Compress from '@/components/Compress'
 import Upload from '@/components/Upload'
 import Video from '@/components/Video'
 import VideoJS from '@/components/VideoJS'
+import Thumbnail from '@/components/Thumbnail'
 
 Vue.use(Router)
 
@@ -46,6 +47,9 @@ export default new Router({
         },{
           path:'videojs',
           component: VideoJS
+        },{
+          path:'thumbnail',
+          component: Thumbnail
         },
         {
           path: '',
