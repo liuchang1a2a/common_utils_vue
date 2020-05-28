@@ -93,7 +93,6 @@ export default {
              }
         },
         zoom:function(){
-            // this.orgpath
             this.src = this.$axios.defaults.baseURL+"img/zoom?path="+encodeURIComponent(this.orgpath)+"&scale="+this.scale+"&v="+new Date();
         },
         viewOrg:function(){
