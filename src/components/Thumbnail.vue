@@ -8,7 +8,12 @@
              <el-menu-item index="5">旋转</el-menu-item> 
              <el-menu-item index="6">裁剪</el-menu-item> 
         </el-menu>
-        <el-input-number v-model="scale" :precision="1" placeholder="缩放比例" class="scale" :step="0.1" :min="0.1" :max="10"></el-input-number>
+        <el-input-number v-model="scale" v-if="activeMenu=='1'" :precision="1" placeholder="缩放比例" class="scale" :step="0.1" :min="0.1" :max="10"></el-input-number>
+        <el-input-number v-model="quality" v-if="activeMenu=='2'" :precision="2" placeholder="质量比" class="scale" :step="0.1" :min="0.01" :max="1.00"></el-input-number>
+        <el-input-number v-model="limit" v-if="activeMenu=='3'"  placeholder="限制大小(KB)" class="scale" :min="1"></el-input-number>
+        <el-input-number v-model="accuracy" v-if="activeMenu=='3'" :precision="1" placeholder="精度" class="scale" :step="0.1" :min="0.1" :max="1.00"></el-input-number>
+        <el-input-number v-model="clarity" v-if="activeMenu=='4'" :precision="1" placeholder="透明度" class="scale" :step="0.1" :min="0.1" :max="1.0"></el-input-number>
+        <el-input-number v-model="angle" v-if="activeMenu=='5'" :precision="1" placeholder="旋转角度" class="scale" :step="0.1" :min="0.0" :max="180.0"></el-input-number>
         <el-upload class="avatar-uploader el-upload--text uploader" 
             :action="uploadUrl" 
             ref="upload"	   
@@ -39,7 +44,12 @@ export default {
             orgname:'',
             orgpath:'',
             scale:'',
-            src:''
+            src:'',
+            quality:'',
+            accuracy:'',
+            limit:'',
+            clarity:'',
+            angle:''
         }
     },
     mounted:function(){
@@ -54,10 +64,36 @@ export default {
             this.activeMenu = key;
             this.orgname = '';
             this.orgpath ='';
+            this.scale = '';
+            this.quality='';
+            this.accuracy='',
+            this.limit='';
+            this.clarity = '';
+            this.angle='';
         },
         check:function(){
             if(this.activeMenu=='1'&&(this.scale==''||this.scale==null)){
                 this.showError("请选择缩放比例");
+                return false;
+            }
+            if(this.activeMenu=='2'&&(this.quality==''||this.quality==null)){
+                this.showError("请选择质量比");
+                return false;
+            }
+            if(this.activeMenu=='3'&&(this.accuracy==''||this.accuracy==null)){
+                this.showError("请选择精度");
+                return false;
+            }
+            if(this.activeMenu=='3'&&(this.limit==''||this.limit==null)){
+                this.showError("请选择限制大小");
+                return false;
+            }
+            if(this.activeMenu=='4'&&(this.clarity==''||this.clarity==null)){
+                this.showError("请选择透明度");
+                return false;
+            }
+             if(this.activeMenu=='5'&&(this.angle==''||this.angle==null)){
+                this.showError("请选择旋转角度");
                 return false;
             }
             if(this.orgpath==''){
@@ -72,6 +108,18 @@ export default {
             }
             if(this.activeMenu=='1'){
                 this.zoom();
+            }
+            if(this.activeMenu=='2'){
+                this.qualify();
+            }
+            if(this.activeMenu=='3'){
+                this.compress();
+            }
+            if(this.activeMenu=='4'){
+                this.watermark();
+            }
+            if(this.activeMenu=='5'){
+                this.rotate();
             }
         },
         beforeUpload: function(file) {
@@ -94,6 +142,18 @@ export default {
         },
         zoom:function(){
             this.src = this.$axios.defaults.baseURL+"img/zoom?path="+encodeURIComponent(this.orgpath)+"&scale="+this.scale+"&v="+new Date();
+        },
+        qualify:function(){
+            this.src = this.$axios.defaults.baseURL+"img/quality?path="+encodeURIComponent(this.orgpath)+"&scale="+this.quality+"&v="+new Date();
+        },
+        compress:function(){
+            this.src = this.$axios.defaults.baseURL+"img/compress?path="+encodeURIComponent(this.orgpath)+"&scale="+this.quality+"&v="+new Date();
+        },
+        watermark:function(){
+            this.src = this.$axios.defaults.baseURL+"img/watermark?path="+encodeURIComponent(this.orgpath)+"&clarity="+this.clarity+"&v="+new Date();
+        },
+        rotate:function(){
+            this.src = this.$axios.defaults.baseURL+"img/rotate?path="+encodeURIComponent(this.orgpath)+"&angle="+this.angle+"&v="+new Date();
         },
         viewOrg:function(){
             var url = this.$axios.defaults.baseURL+this.orgpath;
