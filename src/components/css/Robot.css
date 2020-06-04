@@ -1,0 +1,16 @@
+[v-cloak] {
+    display: none;
+}
+
+.robot{
+    width:600px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.check{
+    width: 300px;
+    margin: auto;
+    margin-top:20px;
+    text-align: center;    
+}

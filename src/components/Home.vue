@@ -10,6 +10,7 @@
         <router-link to="/home/upload" title="上传文件">Upload</router-link>
         <router-link to="/home/video"   title="视频">Video</router-link>
         <router-link to="/home/videojs"   title="m3u8视频">VideoJS</router-link>
+        <router-link to="/home/robot"   title="人机验证">Robot</router-link>
         <router-view></router-view>
     </div>
 </template>

@@ -10,6 +10,7 @@ import Upload from '@/components/Upload'
 import Video from '@/components/Video'
 import VideoJS from '@/components/VideoJS'
 import Thumbnail from '@/components/Thumbnail'
+import Robot from '@/components/Robot'
 
 Vue.use(Router)
 
@@ -50,6 +51,9 @@ export default new Router({
         },{
           path:'thumbnail',
           component: Thumbnail
+        },{
+          path: 'robot',
+          component: Robot
         },
         {
           path: '',

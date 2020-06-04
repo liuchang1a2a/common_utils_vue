@@ -1,3 +1,7 @@
+[v-cloak] {
+    display: none;
+}
+
 .thumb{
     width:600px;
     margin:auto;
