@@ -35,12 +35,18 @@
             <template v-if="activeMenu=='3-1'">  
                 <div id="slip" class="nc-container"></div>
             </template>
+            <!--  https://yundun.console.aliyun.com/?spm=5176.6660585.774526198.1.78196bf8LyC1Wi&p=afs#/person-machine  -->
+            <template v-if="activeMenu=='3-2'">
+                <div id="intel"></div>
+            </template>
+            <template v-if="activeMenu=='3-3'">
+                <h5><a href="" @click="alidetail">详情</a></h5>
+            </template>
         </div>
         
     </div>
 </template>
 <script>
-
 export default {
     name:'Robot',
     data(){
@@ -80,6 +86,11 @@ export default {
             if(key=='3-1'){
                  this.$nextTick(()=>{
                     that.initSlip();
+                });
+            }
+            if(key=='3-2'){
+                 this.$nextTick(()=>{
+                    that.initIntel();
                 });
             }
         },
@@ -144,6 +155,30 @@ export default {
                 _errorNetwork: "网络不给力，请<a href=\"javascript:__nc.reset()\">点击刷新</a>",
             });
         },
+        initIntel:function(){
+              var that = this;
+              var ic = new smartCaptcha({
+                renderTo: '#intel',
+                width: 300,
+                height: 42,
+                default_txt: '点击按钮开始智能验证',
+                success_txt: '验证成功',
+                fail_txt: '验证失败，请在此点击按钮刷新',
+                scaning_txt: '智能检测中',
+                success: function(data) {
+                    // console.log(NVC_Opt.token)
+                    // console.log(data.sessionId);
+                    // console.log(data.sig);
+                    // NVC_Opt.scene
+                    that.checkAli(data.sessionId,data.sig,NVC_Opt.token,NVC_Opt.scene);
+                },
+                fail: function(data) {
+                    console.log('ic error');
+                }
+            });
+            ic.init();
+
+        },
         checkAli:function(sessionid,sig,token,scene){
             var that = this;
             var postdata = this.$qs.stringify({
@@ -169,6 +204,9 @@ export default {
         },
         detail:function(){
             window.open("https://developers.google.com/recaptcha/docs/display#explicit_render");
+        },
+        alidetail:function(){
+            window.open("https://yundun.console.aliyun.com/?spm=5176.6660585.774526198.1.78196bf8LyC1Wi&p=afs#/person-machine");
         },
         callback:function(args){
             console.log("验证成功");
