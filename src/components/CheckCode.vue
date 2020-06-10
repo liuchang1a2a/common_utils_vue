@@ -1,8 +1,13 @@
 <template>
     <div style="width:300px; margin:auto; margin-top: 20px;" v-cloak>
+        <el-menu :default-active="activeMenu" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+            <el-menu-item index="1">标准</el-menu-item>
+            <el-menu-item index="2">GIF</el-menu-item>
+        </el-menu>
         <div class="code_box">
             <el-input v-model="code" placeholder="请输入验证码" :style="{'line-height':height+'px'}"></el-input>
-            <img :src="url" @click="refresh" title="换一张"/>
+            <img :src="url"  v-if="activeMenu=='1'" @click="refresh" title="换一张"/>
+            <img :src="gifurl"  v-if="activeMenu=='2'" @click="gifrefresh" title="换一张"/>
         </div>
         <el-button type="primary" @click="check">验证</el-button>
     </div>    
@@ -17,7 +22,9 @@ export default {
             width:200,
             height:70,
             jsonStr:{},
-            chkUrl:'/img/chkcode'
+            chkUrl:'/img/chkcode',
+            activeMenu:'1',
+            gifurl:''
         }        
     },
     mounted: function(){
@@ -28,6 +35,14 @@ export default {
             this.setCode();
             this.refresh();
         },
+        handleSelect:function(key, keyPath){
+            this.activeMenu = key;
+            if(key=='1'){
+                this.refresh();
+            }else{
+                this.gifrefresh();
+            }
+        },
         refresh:function(){
             var base = this.$axios.defaults.baseURL;
             var jsonstr = JSON.stringify(this.jsonStr);
@@ -36,6 +51,9 @@ export default {
             }else{
                 this.url = base+"img/code?jsonStr="+encodeURIComponent(jsonstr)+"&v="+new Date().getMilliseconds();
             }
+        },
+        gifrefresh:function(){
+            this.gifurl = this.$axios.defaults.baseURL+"img/gifcode?width="+this.width+"&height="+this.height+"&v="+new Date().getMilliseconds();
         },
         setCode:function(){
             this.jsonStr = {
