@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "element-ui": "^2.13.1",
-    "plupload": "^2.3.6",
+    "plupload": "^2.3.9",
     "qs": "^6.9.3",
     "video.js": "^7.7.6",
     "videojs-contrib-hls": "^5.15.0",
